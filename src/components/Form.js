@@ -1,33 +1,46 @@
-import React from 'react'
-import style from "./css/Form.module.css"
+import React from "react";
+import style from "./css/Form.module.css";
 
 function Form(props) {
-    const [value,setValue]=React.useState("");
-    const inputHandler=(e)=>{
-        e.preventDefault();
-        setValue(e.target.value)
+  const [value, setValue] = React.useState("");
+  const [emptyStyle, setEmptyStyle] = React.useState(false);
+  const inputHandler = (e) => {
+      if(value){
+          setEmptyStyle(false)
+      }
+    e.preventDefault();
+    setValue(e.target.value);
+  };
+  const submitHandler = () => {
+    if (value) {
+      setEmptyStyle(false);
 
+      props.sendItemtoApp(value);
+    } else {
+      setEmptyStyle(true);
+      alert("Submitting an empty string as a task is not allowed");
     }
-    const submitHandler=()=>{
-    props.sendItemtoApp(value);
-    setValue("")
-
+  };
+  const keyPressHandler = (e) => {
+    if (e.code === "Enter") {
+      submitHandler();
     }
-    const keyPressHandler=(e)=>{
-        if(e.code==="Enter"){
-            submitHandler();
-        }
-    }
-    return (
-        
-            <div>
-            
-                <input onKeyPress={keyPressHandler} onChange={inputHandler} className={style.inputbox} type="text" value={value}/>
-                <button onClick={submitHandler} className={style.add} type="submit"><i class="fas fa-plus-circle"></i></button>
-            
-        </div>
-        
-    )
+  };
+  return (
+    <div>
+      <input
+        style={{ backgroundColor: emptyStyle && "#AE431E" }}
+        onKeyPress={keyPressHandler}
+        onChange={inputHandler}
+        className={style.inputbox}
+        type="text"
+        value={value}
+      />
+      <button onClick={submitHandler} className={style.add} type="submit">
+        <i class="fas fa-plus-circle"></i>
+      </button>
+    </div>
+  );
 }
 
-export default Form
+export default Form;

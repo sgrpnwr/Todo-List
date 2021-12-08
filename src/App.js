@@ -9,7 +9,7 @@ const [count,setCount]=React.useState(0);
 
 const getItemfromForm=(item)=>{
 console.log(item+" in App");
-if(items.indexOf(item)>=0){
+if(items.map(item=>item.toLocaleLowerCase()).indexOf(item.toLocaleLowerCase())>=0){
   alert("Already added, Please add another task")
 }else{
 setItems(prevValues=>{
