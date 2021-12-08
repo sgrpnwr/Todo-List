@@ -29,12 +29,13 @@ function Form(props) {
   return (
     <div>
       <input
-        style={{ backgroundColor: emptyStyle && "#AE431E" }}
+        style={{ backgroundColor: emptyStyle && "#4F091D" }}
         onKeyPress={keyPressHandler}
         onChange={inputHandler}
         className={style.inputbox}
         type="text"
         value={value}
+        placeholder={emptyStyle&&"Please Enter something"}
       />
       <button onClick={submitHandler} className={style.add} type="submit">
         <i class="fas fa-plus-circle"></i>

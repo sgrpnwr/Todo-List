@@ -2,10 +2,8 @@ import Items from "./components/Items"
 import Form from "./components/Form"
 import style from "./components/css/App.module.css"
 import React from "react";
-import {Howl} from "howler"
 function App() {
 const [items,setItems]=React.useState(["Buy Groceries","Meeting @11","Pick up Stella @8"]);
-const [count,setCount]=React.useState(0);
 
 const getItemfromForm=(item)=>{
 console.log(item+" in App");
